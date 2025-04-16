@@ -1,0 +1,39 @@
+#!/bin/bash
+
+set -e
+
+# 构建参数（你可以修改这里的默认值）
+ENV_NAME="production"
+RELEASE_NAME="0.1.0"
+API_URL="http://host.docker.internal:8100"
+APP_URL="http://host.docker.internal:8100"
+SENTRY_DISABLED="true"
+NEXT_PUBLIC_SENTRY_DSN=""
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=""
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=""
+NEXT_PUBLIC_AMPLITUDE_API_KEY=""
+NEXT_PUBLIC_HARDCODED_TENANT="me"
+NEXT_PUBLIC_DISABLE_AUTHENTICATION="true"
+
+# 镜像名称
+IMAGE_NAME="flowmind-client:latest"
+
+# 构建镜像
+docker build -f client.Dockerfile \
+  --build-arg ENV_NAME="$ENV_NAME" \
+  --build-arg RELEASE_NAME="$RELEASE_NAME" \
+  --build-arg API_URL="$API_URL" \
+  --build-arg APP_URL="$APP_URL" \
+  --build-arg SENTRY_DISABLED="$SENTRY_DISABLED" \
+  --build-arg NEXT_PUBLIC_SENTRY_DSN="$NEXT_PUBLIC_SENTRY_DSN" \
+  --build-arg NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY="$NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY" \
+  --build-arg NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY="$NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY" \
+  --build-arg NEXT_PUBLIC_AMPLITUDE_API_KEY="$NEXT_PUBLIC_AMPLITUDE_API_KEY" \
+  --build-arg NEXT_PUBLIC_HARDCODED_TENANT="$NEXT_PUBLIC_HARDCODED_TENANT" \
+  --build-arg NEXT_PUBLIC_DISABLE_AUTHENTICATION="$NEXT_PUBLIC_DISABLE_AUTHENTICATION" \
+  -t "$IMAGE_NAME" .
+
+echo "✅ Docker 镜像构建完成: $IMAGE_NAME"
+
+# 可选：立即运行容器（如你希望测试一下）
+# docker run -p 3000:3000 "$IMAGE_NAME"

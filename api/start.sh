@@ -19,7 +19,7 @@ taskiq_pid=$!
 echo "Taskiq started with PID $taskiq_pid"
 
 # Start uvicorn 
-uvicorn api.main:app --host 0.0.0.0 --port 8000 --workers 2 &
+uvicorn api.main:app --host 0.0.0.0 --port 8100 --workers 2 &
 uvicorn_pid=$!
 echo "Uvicorn started with PID $uvicorn_pid"
 

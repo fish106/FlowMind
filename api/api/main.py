@@ -96,7 +96,7 @@ async def lifespan(app: FastAPI):
 _ONLY_RUN_ROUTES = os.getenv("ONLY_RUN_ROUTES") == "true"
 
 app = FastAPI(
-    title="WorklowAI",
+    title="FlowMind",
     description="Structured AI workflows",
     version="0.1.0",
     openapi_tags=[

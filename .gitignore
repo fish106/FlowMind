@@ -259,3 +259,5 @@ pyrightconfig.json
 **/.next
 junit
 openapi_fixed.json
+
+.idea/
